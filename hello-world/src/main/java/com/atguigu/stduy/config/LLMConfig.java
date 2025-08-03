@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class LLMConfig {
 
-    @Bean
+    @Bean("qw")
     public ChatModel chatModelQwen() {
         return OpenAiChatModel.builder()
                 //环境变量
@@ -23,4 +23,13 @@ public class LLMConfig {
                 .build();
     }
 
+    @Bean("deepSeek")
+    public ChatModel chatModelDeepSeek() {
+        return OpenAiChatModel.builder()
+                //环境变量
+                .apiKey(System.getenv("deepseekApiKey"))
+                .modelName("deepseek-chat")
+                .baseUrl("https://api.deepseek.com/v1")
+                .build();
+    }
 }

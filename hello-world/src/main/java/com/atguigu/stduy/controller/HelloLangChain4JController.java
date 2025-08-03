@@ -20,15 +20,30 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class HelloLangChain4JController
 {
-    // http://localhost:9001/langchain4j/hello?question=如何学习java
 
-    @Resource
+
+    @Resource(name="qw")
     private ChatModel chatModel;
 
+    @Resource(name="deepSeek")
+    private ChatModel deepseekChatModel;
+
+    // http://localhost:9001/langchain4j/hello?question=你是谁
     @GetMapping(value = "/langchain4j/hello")
-    public String hello(@RequestParam(value = "question",defaultValue = "你是谁") String question)
+    public String qwHello(@RequestParam(value = "question",defaultValue = "你是谁 回复尽量简短") String question)
     {
         String result = chatModel.chat(question);
+
+        System.out.println("调用大模型回复: "+result);
+
+        return result;
+    }
+
+    // http://localhost:9001/langchain4j/deepseek/hello?question=你是谁
+    @GetMapping(value = "/langchain4j/deepseek/hello")
+    public String deepseekHello(@RequestParam(value = "question",defaultValue = "你是谁 回复尽量简短") String question)
+    {
+        String result = deepseekChatModel.chat(question);
 
         System.out.println("调用大模型回复: "+result);
 
