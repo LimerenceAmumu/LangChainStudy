@@ -22,9 +22,15 @@ public class HelloLangChain4JController
 {
 
 
+    /**
+     * 默认的模型 千问
+     */
     @Resource(name="qw")
     private ChatModel chatModel;
 
+    /**
+     * 模型deepSeek
+     */
     @Resource(name="deepSeek")
     private ChatModel deepseekChatModel;
 
@@ -50,8 +56,4 @@ public class HelloLangChain4JController
         return result;
     }
 
-    public void test1(String question)
-    {
-
-    }
 }
